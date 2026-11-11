@@ -14,8 +14,7 @@ fact's source. No neural network is trained; the only models used are a text enc
 
 ## Core idea: CAEA concept representation
 
-**CAEA** (Concept-Aware Entity Alignment network; Wu et al., IEEE Transactions on Industrial Informatics, 2025 —
-see [References](#references)) aligns entities across two knowledge graphs. Its central observation is that
+**CAEA** aligns entities across two knowledge graphs. Its central observation is that
 *entities of the same concept (class) have similar relations and attributes*, so the concept of an entity can be
 derived from them **without an external ontology or explicit type links**:
 
