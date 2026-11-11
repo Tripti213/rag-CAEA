@@ -1,0 +1,73 @@
+{
+  "encoder": "bert-base-uncased",
+  "k": 1,
+  "m": 5,
+  "lam": 0.5,
+  "n_questions": 20,
+  "link[name only (lam=1)]": [
+    12,
+    21
+  ],
+  "link[name + concept (lam=0.5)]": [
+    19,
+    21
+  ],
+  "link[concept only (lam=0)]": [
+    19,
+    21
+  ],
+  "recall[text-only, no graph]": [
+    9,
+    24
+  ],
+  "recall[KG omega=0.0]": [
+    19,
+    24
+  ],
+  "recall[KG omega=0.25]": [
+    18,
+    24
+  ],
+  "recall[KG omega=0.5]": [
+    15,
+    24
+  ],
+  "recall[KG omega=0.75]": [
+    14,
+    24
+  ],
+  "recall[KG omega=1.0]": [
+    13,
+    24
+  ],
+  "ablation[rel]": {
+    "link": [
+      19,
+      21
+    ],
+    "recall": [
+      12,
+      24
+    ]
+  },
+  "ablation[attr]": {
+    "link": [
+      18,
+      21
+    ],
+    "recall": [
+      16,
+      24
+    ]
+  },
+  "ablation[both]": {
+    "link": [
+      19,
+      21
+    ],
+    "recall": [
+      15,
+      24
+    ]
+  }
+}

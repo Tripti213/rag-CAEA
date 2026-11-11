@@ -1,0 +1,53 @@
+{
+  "encoder": "hash",
+  "k": 1,
+  "m": 5,
+  "lam": 0.5,
+  "n_questions": 94,
+  "link[name only (lam=1)]": [
+    9,
+    54
+  ],
+  "link[name + concept (lam=0.5)]": [
+    47,
+    54
+  ],
+  "link[concept only (lam=0)]": [
+    47,
+    54
+  ],
+  "recall[text-only, no graph]": [
+    111,
+    320
+  ],
+  "recall[KG omega=0.0]": [
+    114,
+    320
+  ],
+  "recall[KG omega=0.25]": [
+    85,
+    320
+  ],
+  "recall[KG omega=0.5]": [
+    73,
+    320
+  ],
+  "recall[KG omega=0.75]": [
+    56,
+    320
+  ],
+  "recall[KG omega=1.0]": [
+    18,
+    320
+  ],
+  "ablation[rel]": {
+    "link": [
+      47,
+      54
+    ],
+    "recall": [
+      73,
+      320
+    ]
+  }
+}

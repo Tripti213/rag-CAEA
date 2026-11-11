@@ -1,0 +1,6 @@
+numpy
+# real encoder (BERT-style), runs on CPU or Apple-silicon MPS:
+torch
+transformers
+# optional generation backends:
+anthropic

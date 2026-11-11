@@ -1,0 +1,7 @@
+Toy KG pilot (demo_data, 78 triples, 20 questions: 10 dev / 10 test)
+Date: 2026-11-10
+Encoder: bert-base-uncased
+LLM: Groq, model openai/gpt-oss-120b, temperature 0
+Tuned on dev: lam=0.0, omega=0.25 (lam had no effect on dev; omega gain was 1 triple)
+Test command: python evaluate_answers.py --split test --encoder bert-base-uncased --lam 0.0 --omega 0.25 --llm groq
+k=1, m=5

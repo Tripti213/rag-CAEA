@@ -1,0 +1,1780 @@
+{
+  "args": {
+    "data": "demo_data",
+    "questions": "demo_data/questions.jsonl",
+    "split": "test",
+    "encoder": "bert-base-uncased",
+    "llm": "groq",
+    "lam": 0.0,
+    "omega": 0.25,
+    "k": 1,
+    "m": 5,
+    "out": "answers.json"
+  },
+  "summary": {
+    "no retrieval": {
+      "answer_correct": [
+        7,
+        10
+      ],
+      "answer_correct_strict": [
+        7,
+        10
+      ],
+      "abstained": [
+        0,
+        10
+      ],
+      "gold_recall": [
+        0,
+        12
+      ],
+      "cites_gold": [
+        0,
+        10
+      ],
+      "invalid_citations": 0
+    },
+    "text-only retrieval": {
+      "answer_correct": [
+        4,
+        10
+      ],
+      "answer_correct_strict": [
+        4,
+        10
+      ],
+      "abstained": [
+        6,
+        10
+      ],
+      "gold_recall": [
+        3,
+        12
+      ],
+      "cites_gold": [
+        2,
+        10
+      ],
+      "invalid_citations": 0
+    },
+    "KG retrieval, omega=0": {
+      "answer_correct": [
+        9,
+        10
+      ],
+      "answer_correct_strict": [
+        8,
+        10
+      ],
+      "abstained": [
+        2,
+        10
+      ],
+      "gold_recall": [
+        9,
+        12
+      ],
+      "cites_gold": [
+        8,
+        10
+      ],
+      "invalid_citations": 0
+    },
+    "KG retrieval, concept-aware (omega=0.25)": {
+      "answer_correct": [
+        6,
+        10
+      ],
+      "answer_correct_strict": [
+        6,
+        10
+      ],
+      "abstained": [
+        4,
+        10
+      ],
+      "gold_recall": [
+        7,
+        12
+      ],
+      "cites_gold": [
+        6,
+        10
+      ],
+      "invalid_citations": 0
+    }
+  },
+  "detail": [
+    {
+      "setting": "no retrieval",
+      "question": "Which drug treats PD with tremor symptoms?",
+      "correct": false,
+      "abstained": false,
+      "context": [],
+      "answer": "Trihexyphenidyl (or benztropine), an anticholinergic medication, is commonly used to treat tremor‑dominant Parkinson’s disease.",
+      "links": [],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "no retrieval",
+      "question": "Which side effect does MS share with codeine?",
+      "correct": true,
+      "abstained": false,
+      "context": [],
+      "answer": "Both multiple sclerosis and codeine can cause constipation.",
+      "links": [],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "no retrieval",
+      "question": "Which drug treats RA and has nausea as a side effect?",
+      "correct": true,
+      "abstained": false,
+      "context": [],
+      "answer": "Methotrexate is commonly used to treat rheumatoid arthritis and often lists nausea as a side effect.",
+      "links": [],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "no retrieval",
+      "question": "Which structure is RA part of, like the left atrium?",
+      "correct": true,
+      "abstained": false,
+      "context": [],
+      "answer": "The right atrium (RA) is a chamber of the heart—specifically, it is one of the two atria that make up the heart’s upper chambers, analogous to the left atrium.",
+      "links": [],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "no retrieval",
+      "question": "Which condition is a risk factor for AF and is treated with lisinopril?",
+      "correct": true,
+      "abstained": false,
+      "context": [],
+      "answer": "Hypertension is a risk factor for atrial fibrillation and is commonly treated with lisinopril.",
+      "links": [],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "no retrieval",
+      "question": "What is AF part of, as the placenta is?",
+      "correct": true,
+      "abstained": false,
+      "context": [],
+      "answer": "Amniotic fluid (AF) is a component of the fetal membranes—the amniotic sac that surrounds the developing fetus.",
+      "links": [],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "no retrieval",
+      "question": "Which system do ALS and PD both affect?",
+      "correct": false,
+      "abstained": false,
+      "context": [],
+      "answer": "Both ALS (amyotrophic lateral sclerosis) and PD (Parkinson’s disease) affect the nervous system, particularly the motor pathways.",
+      "links": [],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "no retrieval",
+      "question": "Which symptom of MS affects vision, unlike epilepsy?",
+      "correct": true,
+      "abstained": false,
+      "context": [],
+      "answer": "Optic neuritis – inflammation of the optic nerve that causes vision problems such as blurred vision, loss of color perception, or pain with eye movement. This visual symptom is characteristic of multiple sclerosis and is not a feature of epilepsy.",
+      "links": [],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "no retrieval",
+      "question": "What class of drug is MS, like codeine?",
+      "correct": true,
+      "abstained": false,
+      "context": [],
+      "answer": "Codeine belongs to the **opioid (narcotic) analgesic** class of drugs.",
+      "links": [],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "no retrieval",
+      "question": "What kind of disease is RA, as asthma is a respiratory one?",
+      "correct": false,
+      "abstained": false,
+      "context": [],
+      "answer": "Rheumatoid arthritis (RA) is an **autoimmune, systemic inflammatory disease** that primarily affects the joints. It is not classified by organ system like “respiratory” (asthma) but rather as an autoimmune/immune‑mediated rheumatologic condition.",
+      "links": [],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "text-only retrieval",
+      "question": "Which drug treats PD with tremor symptoms?",
+      "correct": false,
+      "abstained": true,
+      "context": [
+        [
+          "Parkinson_disease",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Parkinson_disease",
+          "has_symptom",
+          "Tremor"
+        ],
+        [
+          "Morphine_sulfate",
+          "has_side_effect",
+          "Respiratory_depression"
+        ],
+        [
+          "Epilepsy",
+          "has_symptom",
+          "Seizure"
+        ],
+        [
+          "Rheumatoid_arthritis",
+          "has_symptom",
+          "Fatigue"
+        ]
+      ],
+      "answer": "The provided facts do not include any information about a drug that treats Parkinson disease (PD) with tremor symptoms. Therefore, I cannot answer the question based on the given facts.",
+      "links": [],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "text-only retrieval",
+      "question": "Which side effect does MS share with codeine?",
+      "correct": false,
+      "abstained": true,
+      "context": [
+        [
+          "Interferon_beta",
+          "has_side_effect",
+          "Fatigue"
+        ],
+        [
+          "Warfarin",
+          "has_side_effect",
+          "Bleeding"
+        ],
+        [
+          "Warfarin",
+          "interacts_with",
+          "Codeine"
+        ],
+        [
+          "Codeine",
+          "has_side_effect",
+          "Constipation"
+        ],
+        [
+          "Morphine_sulfate",
+          "has_side_effect",
+          "Respiratory_depression"
+        ]
+      ],
+      "answer": "The provided facts do not include any information about side effects associated with multiple sclerosis (MS). Therefore, I cannot determine which side effect MS shares with codeine based on the given facts.",
+      "links": [],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "text-only retrieval",
+      "question": "Which drug treats RA and has nausea as a side effect?",
+      "correct": false,
+      "abstained": true,
+      "context": [
+        [
+          "Morphine_sulfate",
+          "has_side_effect",
+          "Respiratory_depression"
+        ],
+        [
+          "Diazepam",
+          "has_side_effect",
+          "Respiratory_depression"
+        ],
+        [
+          "Levodopa",
+          "has_side_effect",
+          "Nausea"
+        ],
+        [
+          "Methotrexate",
+          "has_side_effect",
+          "Nausea"
+        ],
+        [
+          "Morphine_sulfate",
+          "has_side_effect",
+          "Constipation"
+        ]
+      ],
+      "answer": "The provided facts do not include any information about which drugs are used to treat rheumatoid arthritis (RA). Therefore, based on the given facts, I cannot determine a drug that both treats RA and has nausea as a side effect.",
+      "links": [],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "text-only retrieval",
+      "question": "Which structure is RA part of, like the left atrium?",
+      "correct": true,
+      "abstained": false,
+      "context": [
+        [
+          "Left_atrium",
+          "part_of",
+          "Heart"
+        ],
+        [
+          "Right_atrium",
+          "part_of",
+          "Heart"
+        ],
+        [
+          "Parkinson_disease",
+          "affects_organ",
+          "Central_nervous_system"
+        ],
+        [
+          "Right_atrium",
+          "connected_to",
+          "Right_ventricle"
+        ],
+        [
+          "Left_atrium",
+          "connected_to",
+          "Left_ventricle"
+        ]
+      ],
+      "answer": "The right atrium, like the left atrium, is a component of the **heart**【2】【1】.",
+      "links": [],
+      "cited": [
+        [
+          2,
+          [
+            "Right_atrium",
+            "part_of",
+            "Heart"
+          ],
+          "DemoKG v1"
+        ],
+        [
+          1,
+          [
+            "Left_atrium",
+            "part_of",
+            "Heart"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "text-only retrieval",
+      "question": "Which condition is a risk factor for AF and is treated with lisinopril?",
+      "correct": true,
+      "abstained": false,
+      "context": [
+        [
+          "Metformin",
+          "treats",
+          "Type_2_diabetes"
+        ],
+        [
+          "Lisinopril",
+          "treats",
+          "Hypertension"
+        ],
+        [
+          "Levodopa",
+          "treats",
+          "Parkinson_disease"
+        ],
+        [
+          "Morphine_sulfate",
+          "has_side_effect",
+          "Constipation"
+        ],
+        [
+          "Methotrexate",
+          "treats",
+          "Rheumatoid_arthritis"
+        ]
+      ],
+      "answer": "Hypertension — a known risk factor for atrial fibrillation and the condition treated by lisinopril [2].",
+      "links": [],
+      "cited": [
+        [
+          2,
+          [
+            "Lisinopril",
+            "treats",
+            "Hypertension"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "text-only retrieval",
+      "question": "What is AF part of, as the placenta is?",
+      "correct": false,
+      "abstained": true,
+      "context": [
+        [
+          "Atrial_fibrillation",
+          "has_symptom",
+          "Palpitations"
+        ],
+        [
+          "Placenta",
+          "connected_to",
+          "Fetus"
+        ],
+        [
+          "Asthma",
+          "has_symptom",
+          "Wheezing"
+        ],
+        [
+          "Amniotic_fluid",
+          "surrounds",
+          "Fetus"
+        ],
+        [
+          "Parkinson_disease",
+          "has_symptom",
+          "Muscle_weakness"
+        ]
+      ],
+      "answer": "The provided facts do not contain information linking atrial fibrillation (AF) to a larger structure or system in the way the fact about the placenta being connected to the fetus does. Therefore, I cannot answer the question with the given facts.",
+      "links": [],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "text-only retrieval",
+      "question": "Which system do ALS and PD both affect?",
+      "correct": false,
+      "abstained": true,
+      "context": [
+        [
+          "Parkinson_disease",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Parkinson_disease",
+          "has_symptom",
+          "Tremor"
+        ],
+        [
+          "Type_2_diabetes",
+          "is_a",
+          "Metabolic_disease"
+        ],
+        [
+          "Epilepsy",
+          "is_a",
+          "Neurological_disease"
+        ],
+        [
+          "Multiple_sclerosis",
+          "has_symptom",
+          "Muscle_weakness"
+        ]
+      ],
+      "answer": "The provided facts do not contain information about the bodily system affected by ALS or the system that both ALS and Parkinson disease (PD) affect. Therefore, I cannot answer the question based on the given facts.",
+      "links": [],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "text-only retrieval",
+      "question": "Which symptom of MS affects vision, unlike epilepsy?",
+      "correct": true,
+      "abstained": false,
+      "context": [
+        [
+          "Multiple_sclerosis",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Epilepsy",
+          "has_symptom",
+          "Seizure"
+        ],
+        [
+          "Parkinson_disease",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Amyotrophic_lateral_sclerosis",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Multiple_sclerosis",
+          "has_symptom",
+          "Optic_neuritis"
+        ]
+      ],
+      "answer": "The vision‑related symptom of multiple sclerosis is **optic neuritis** [5].",
+      "links": [],
+      "cited": [
+        [
+          5,
+          [
+            "Multiple_sclerosis",
+            "has_symptom",
+            "Optic_neuritis"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "text-only retrieval",
+      "question": "What class of drug is MS, like codeine?",
+      "correct": true,
+      "abstained": false,
+      "context": [
+        [
+          "Codeine",
+          "is_a",
+          "Opioid"
+        ],
+        [
+          "Morphine_sulfate",
+          "has_side_effect",
+          "Respiratory_depression"
+        ],
+        [
+          "Levodopa",
+          "treats",
+          "Parkinson_disease"
+        ],
+        [
+          "Methotrexate",
+          "is_a",
+          "Antimetabolite"
+        ],
+        [
+          "Diazepam",
+          "has_side_effect",
+          "Respiratory_depression"
+        ]
+      ],
+      "answer": "Codeine belongs to the opioid class of drugs [1].",
+      "links": [],
+      "cited": [
+        [
+          1,
+          [
+            "Codeine",
+            "is_a",
+            "Opioid"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "text-only retrieval",
+      "question": "What kind of disease is RA, as asthma is a respiratory one?",
+      "correct": false,
+      "abstained": true,
+      "context": [
+        [
+          "Asthma",
+          "is_a",
+          "Respiratory_disease"
+        ],
+        [
+          "Type_2_diabetes",
+          "is_a",
+          "Metabolic_disease"
+        ],
+        [
+          "Asthma",
+          "has_symptom",
+          "Wheezing"
+        ],
+        [
+          "Parkinson_disease",
+          "is_a",
+          "Neurological_disease"
+        ],
+        [
+          "Cardiac_arrest",
+          "is_a",
+          "Cardiovascular_disease"
+        ]
+      ],
+      "answer": "The provided facts do not include any information about rheumatoid arthritis (RA). Therefore, I cannot determine what kind of disease RA is based on the given facts.",
+      "links": [],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, omega=0",
+      "question": "Which drug treats PD with tremor symptoms?",
+      "correct": true,
+      "abstained": false,
+      "context": [
+        [
+          "Parkinson_disease",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Parkinson_disease",
+          "has_symptom",
+          "Tremor"
+        ],
+        [
+          "Epilepsy",
+          "is_a",
+          "Neurological_disease"
+        ],
+        [
+          "Levodopa",
+          "treats",
+          "Parkinson_disease"
+        ],
+        [
+          "Multiple_sclerosis",
+          "has_symptom",
+          "Muscle_weakness"
+        ]
+      ],
+      "answer": "Levodopa is used to treat Parkinson disease, which commonly includes tremor symptoms【4】【2】.",
+      "links": [
+        [
+          "pd",
+          "Parkinson_disease"
+        ],
+        [
+          "tremor",
+          "Tremor"
+        ]
+      ],
+      "cited": [
+        [
+          4,
+          [
+            "Levodopa",
+            "treats",
+            "Parkinson_disease"
+          ],
+          "DemoKG v1"
+        ],
+        [
+          2,
+          [
+            "Parkinson_disease",
+            "has_symptom",
+            "Tremor"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, omega=0",
+      "question": "Which side effect does MS share with codeine?",
+      "correct": true,
+      "abstained": false,
+      "context": [
+        [
+          "Warfarin",
+          "has_side_effect",
+          "Bleeding"
+        ],
+        [
+          "Warfarin",
+          "interacts_with",
+          "Codeine"
+        ],
+        [
+          "Codeine",
+          "has_side_effect",
+          "Constipation"
+        ],
+        [
+          "Morphine_sulfate",
+          "has_side_effect",
+          "Respiratory_depression"
+        ],
+        [
+          "Morphine_sulfate",
+          "has_side_effect",
+          "Constipation"
+        ]
+      ],
+      "answer": "Morphine sulfate and codeine both can cause constipation【5】【3】.",
+      "links": [
+        [
+          "ms",
+          "Morphine_sulfate"
+        ],
+        [
+          "codeine",
+          "Codeine"
+        ]
+      ],
+      "cited": [
+        [
+          5,
+          [
+            "Morphine_sulfate",
+            "has_side_effect",
+            "Constipation"
+          ],
+          "DemoKG v1"
+        ],
+        [
+          3,
+          [
+            "Codeine",
+            "has_side_effect",
+            "Constipation"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, omega=0",
+      "question": "Which drug treats RA and has nausea as a side effect?",
+      "correct": true,
+      "abstained": false,
+      "context": [
+        [
+          "Levodopa",
+          "has_side_effect",
+          "Nausea"
+        ],
+        [
+          "Methotrexate",
+          "has_side_effect",
+          "Nausea"
+        ],
+        [
+          "Methotrexate",
+          "treats",
+          "Rheumatoid_arthritis"
+        ],
+        [
+          "Levodopa",
+          "treats",
+          "Parkinson_disease"
+        ],
+        [
+          "Adalimumab",
+          "treats",
+          "Rheumatoid_arthritis"
+        ]
+      ],
+      "answer": "Methotrexate — it treats rheumatoid arthritis [3] and its side‑effect profile includes nausea [2].",
+      "links": [
+        [
+          "ra",
+          "Rheumatoid_arthritis"
+        ],
+        [
+          "nausea",
+          "Nausea"
+        ]
+      ],
+      "cited": [
+        [
+          3,
+          [
+            "Methotrexate",
+            "treats",
+            "Rheumatoid_arthritis"
+          ],
+          "DemoKG v1"
+        ],
+        [
+          2,
+          [
+            "Methotrexate",
+            "has_side_effect",
+            "Nausea"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, omega=0",
+      "question": "Which structure is RA part of, like the left atrium?",
+      "correct": true,
+      "abstained": false,
+      "context": [
+        [
+          "Left_atrium",
+          "part_of",
+          "Heart"
+        ],
+        [
+          "Right_atrium",
+          "part_of",
+          "Heart"
+        ],
+        [
+          "Right_atrium",
+          "connected_to",
+          "Right_ventricle"
+        ],
+        [
+          "Left_atrium",
+          "connected_to",
+          "Left_ventricle"
+        ],
+        [
+          "Right_ventricle",
+          "part_of",
+          "Heart"
+        ]
+      ],
+      "answer": "The right atrium (RA) is part of the heart, just as the left atrium is. [2]",
+      "links": [
+        [
+          "ra",
+          "Right_atrium"
+        ],
+        [
+          "left atrium",
+          "Left_atrium"
+        ]
+      ],
+      "cited": [
+        [
+          2,
+          [
+            "Right_atrium",
+            "part_of",
+            "Heart"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, omega=0",
+      "question": "Which condition is a risk factor for AF and is treated with lisinopril?",
+      "correct": true,
+      "abstained": false,
+      "context": [
+        [
+          "Lisinopril",
+          "treats",
+          "Hypertension"
+        ],
+        [
+          "Type_2_diabetes",
+          "risk_factor_for",
+          "Hypertension"
+        ],
+        [
+          "Hypertension",
+          "risk_factor_for",
+          "Atrial_fibrillation"
+        ],
+        [
+          "Hypertension",
+          "is_a",
+          "Cardiovascular_disease"
+        ],
+        [
+          "Amniotic_fluid",
+          "surrounds",
+          "Fetus"
+        ]
+      ],
+      "answer": "Hypertension is a risk factor for atrial fibrillation [3] and it is treated with lisinopril [1].",
+      "links": [
+        [
+          "af",
+          "Amniotic_fluid"
+        ],
+        [
+          "lisinopril",
+          "Lisinopril"
+        ]
+      ],
+      "cited": [
+        [
+          3,
+          [
+            "Hypertension",
+            "risk_factor_for",
+            "Atrial_fibrillation"
+          ],
+          "DemoKG v1"
+        ],
+        [
+          1,
+          [
+            "Lisinopril",
+            "treats",
+            "Hypertension"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, omega=0",
+      "question": "What is AF part of, as the placenta is?",
+      "correct": true,
+      "abstained": false,
+      "context": [
+        [
+          "Placenta",
+          "connected_to",
+          "Fetus"
+        ],
+        [
+          "Amniotic_fluid",
+          "surrounds",
+          "Fetus"
+        ],
+        [
+          "Placenta",
+          "part_of",
+          "Amniotic_sac"
+        ],
+        [
+          "Amniotic_fluid",
+          "part_of",
+          "Amniotic_sac"
+        ]
+      ],
+      "answer": "Amniotic fluid is part of the amniotic sac【4】.",
+      "links": [
+        [
+          "af",
+          "Amniotic_fluid"
+        ],
+        [
+          "placenta",
+          "Placenta"
+        ]
+      ],
+      "cited": [
+        [
+          4,
+          [
+            "Amniotic_fluid",
+            "part_of",
+            "Amniotic_sac"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, omega=0",
+      "question": "Which system do ALS and PD both affect?",
+      "correct": false,
+      "abstained": true,
+      "context": [
+        [
+          "Parkinson_disease",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Parkinson_disease",
+          "has_symptom",
+          "Tremor"
+        ],
+        [
+          "Epilepsy",
+          "is_a",
+          "Neurological_disease"
+        ],
+        [
+          "Multiple_sclerosis",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Parkinson_disease",
+          "is_a",
+          "Neurological_disease"
+        ]
+      ],
+      "answer": "The provided facts do not contain any information about ALS, so I cannot determine which system ALS and Parkinson disease both affect.",
+      "links": [
+        [
+          "als",
+          "Advanced_life_support"
+        ],
+        [
+          "pd",
+          "Parkinson_disease"
+        ]
+      ],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, omega=0",
+      "question": "Which symptom of MS affects vision, unlike epilepsy?",
+      "correct": true,
+      "abstained": false,
+      "context": [
+        [
+          "Multiple_sclerosis",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Epilepsy",
+          "has_symptom",
+          "Seizure"
+        ],
+        [
+          "Parkinson_disease",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Amyotrophic_lateral_sclerosis",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Multiple_sclerosis",
+          "has_symptom",
+          "Optic_neuritis"
+        ]
+      ],
+      "answer": "The vision‑related symptom of multiple sclerosis is **optic neuritis** [5].",
+      "links": [
+        [
+          "ms",
+          "Multiple_sclerosis"
+        ],
+        [
+          "epilepsy",
+          "Epilepsy"
+        ]
+      ],
+      "cited": [
+        [
+          5,
+          [
+            "Multiple_sclerosis",
+            "has_symptom",
+            "Optic_neuritis"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, omega=0",
+      "question": "What class of drug is MS, like codeine?",
+      "correct": true,
+      "abstained": true,
+      "context": [
+        [
+          "Codeine",
+          "is_a",
+          "Opioid"
+        ],
+        [
+          "Morphine_sulfate",
+          "has_side_effect",
+          "Respiratory_depression"
+        ],
+        [
+          "Diazepam",
+          "has_side_effect",
+          "Respiratory_depression"
+        ],
+        [
+          "Codeine",
+          "has_side_effect",
+          "Constipation"
+        ],
+        [
+          "Morphine_sulfate",
+          "interacts_with",
+          "Diazepam"
+        ]
+      ],
+      "answer": "The provided facts state that codeine is an opioid [1], but they do not include any information about the drug class of morphine sulfate (MS). Therefore, based on the available facts, I cannot determine the class of MS.",
+      "links": [
+        [
+          "ms",
+          "Morphine_sulfate"
+        ],
+        [
+          "codeine",
+          "Codeine"
+        ]
+      ],
+      "cited": [
+        [
+          1,
+          [
+            "Codeine",
+            "is_a",
+            "Opioid"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, omega=0",
+      "question": "What kind of disease is RA, as asthma is a respiratory one?",
+      "correct": true,
+      "abstained": false,
+      "context": [
+        [
+          "Asthma",
+          "is_a",
+          "Respiratory_disease"
+        ],
+        [
+          "Asthma",
+          "has_symptom",
+          "Wheezing"
+        ],
+        [
+          "Rheumatoid_arthritis",
+          "is_a",
+          "Autoimmune_disease"
+        ],
+        [
+          "Rheumatoid_arthritis",
+          "has_symptom",
+          "Fatigue"
+        ],
+        [
+          "Multiple_sclerosis",
+          "is_a",
+          "Autoimmune_disease"
+        ]
+      ],
+      "answer": "Rheumatoid arthritis is an **autoimmune disease**【3】.",
+      "links": [
+        [
+          "ra",
+          "Rheumatoid_arthritis"
+        ],
+        [
+          "asthma",
+          "Asthma"
+        ]
+      ],
+      "cited": [
+        [
+          3,
+          [
+            "Rheumatoid_arthritis",
+            "is_a",
+            "Autoimmune_disease"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, concept-aware (omega=0.25)",
+      "question": "Which drug treats PD with tremor symptoms?",
+      "correct": true,
+      "abstained": false,
+      "context": [
+        [
+          "Parkinson_disease",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Parkinson_disease",
+          "has_symptom",
+          "Tremor"
+        ],
+        [
+          "Levodopa",
+          "treats",
+          "Parkinson_disease"
+        ],
+        [
+          "Multiple_sclerosis",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Amyotrophic_lateral_sclerosis",
+          "has_symptom",
+          "Muscle_weakness"
+        ]
+      ],
+      "answer": "Levodopa is used to treat Parkinson disease, which commonly presents with tremor symptoms【2】【3】.",
+      "links": [
+        [
+          "pd",
+          "Parkinson_disease"
+        ],
+        [
+          "tremor",
+          "Tremor"
+        ]
+      ],
+      "cited": [
+        [
+          2,
+          [
+            "Parkinson_disease",
+            "has_symptom",
+            "Tremor"
+          ],
+          "DemoKG v1"
+        ],
+        [
+          3,
+          [
+            "Levodopa",
+            "treats",
+            "Parkinson_disease"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, concept-aware (omega=0.25)",
+      "question": "Which side effect does MS share with codeine?",
+      "correct": false,
+      "abstained": true,
+      "context": [
+        [
+          "Warfarin",
+          "interacts_with",
+          "Codeine"
+        ],
+        [
+          "Morphine_sulfate",
+          "interacts_with",
+          "Diazepam"
+        ],
+        [
+          "Codeine",
+          "has_side_effect",
+          "Constipation"
+        ],
+        [
+          "Warfarin",
+          "has_side_effect",
+          "Bleeding"
+        ],
+        [
+          "Morphine_sulfate",
+          "has_side_effect",
+          "Respiratory_depression"
+        ]
+      ],
+      "answer": "The provided facts do not list any side effect that is common to both morphine sulfate and codeine. Therefore, based on the available information, I cannot identify a shared side effect.",
+      "links": [
+        [
+          "ms",
+          "Morphine_sulfate"
+        ],
+        [
+          "codeine",
+          "Codeine"
+        ]
+      ],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, concept-aware (omega=0.25)",
+      "question": "Which drug treats RA and has nausea as a side effect?",
+      "correct": true,
+      "abstained": false,
+      "context": [
+        [
+          "Methotrexate",
+          "treats",
+          "Rheumatoid_arthritis"
+        ],
+        [
+          "Levodopa",
+          "treats",
+          "Parkinson_disease"
+        ],
+        [
+          "Adalimumab",
+          "treats",
+          "Rheumatoid_arthritis"
+        ],
+        [
+          "Levodopa",
+          "has_side_effect",
+          "Nausea"
+        ],
+        [
+          "Methotrexate",
+          "has_side_effect",
+          "Nausea"
+        ]
+      ],
+      "answer": "Methotrexate — it is used to treat rheumatoid arthritis [1] and its known side effect is nausea [5].",
+      "links": [
+        [
+          "ra",
+          "Rheumatoid_arthritis"
+        ],
+        [
+          "nausea",
+          "Nausea"
+        ]
+      ],
+      "cited": [
+        [
+          1,
+          [
+            "Methotrexate",
+            "treats",
+            "Rheumatoid_arthritis"
+          ],
+          "DemoKG v1"
+        ],
+        [
+          5,
+          [
+            "Methotrexate",
+            "has_side_effect",
+            "Nausea"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, concept-aware (omega=0.25)",
+      "question": "Which structure is RA part of, like the left atrium?",
+      "correct": true,
+      "abstained": false,
+      "context": [
+        [
+          "Left_atrium",
+          "part_of",
+          "Heart"
+        ],
+        [
+          "Right_atrium",
+          "connected_to",
+          "Right_ventricle"
+        ],
+        [
+          "Left_atrium",
+          "connected_to",
+          "Left_ventricle"
+        ],
+        [
+          "Right_atrium",
+          "part_of",
+          "Heart"
+        ],
+        [
+          "Right_ventricle",
+          "part_of",
+          "Heart"
+        ]
+      ],
+      "answer": "The right atrium (RA) is part of the heart, just as the left atrium is part of the heart【4】【1】.",
+      "links": [
+        [
+          "ra",
+          "Right_atrium"
+        ],
+        [
+          "left atrium",
+          "Left_atrium"
+        ]
+      ],
+      "cited": [
+        [
+          4,
+          [
+            "Right_atrium",
+            "part_of",
+            "Heart"
+          ],
+          "DemoKG v1"
+        ],
+        [
+          1,
+          [
+            "Left_atrium",
+            "part_of",
+            "Heart"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, concept-aware (omega=0.25)",
+      "question": "Which condition is a risk factor for AF and is treated with lisinopril?",
+      "correct": true,
+      "abstained": false,
+      "context": [
+        [
+          "Type_2_diabetes",
+          "risk_factor_for",
+          "Hypertension"
+        ],
+        [
+          "Hypertension",
+          "risk_factor_for",
+          "Atrial_fibrillation"
+        ],
+        [
+          "Lisinopril",
+          "treats",
+          "Hypertension"
+        ],
+        [
+          "Hypertension",
+          "is_a",
+          "Cardiovascular_disease"
+        ],
+        [
+          "Amniotic_fluid",
+          "surrounds",
+          "Fetus"
+        ]
+      ],
+      "answer": "Hypertension is a risk factor for atrial fibrillation and is treated with lisinopril [2][3].",
+      "links": [
+        [
+          "af",
+          "Amniotic_fluid"
+        ],
+        [
+          "lisinopril",
+          "Lisinopril"
+        ]
+      ],
+      "cited": [
+        [
+          2,
+          [
+            "Hypertension",
+            "risk_factor_for",
+            "Atrial_fibrillation"
+          ],
+          "DemoKG v1"
+        ],
+        [
+          3,
+          [
+            "Lisinopril",
+            "treats",
+            "Hypertension"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, concept-aware (omega=0.25)",
+      "question": "What is AF part of, as the placenta is?",
+      "correct": true,
+      "abstained": false,
+      "context": [
+        [
+          "Placenta",
+          "connected_to",
+          "Fetus"
+        ],
+        [
+          "Amniotic_fluid",
+          "surrounds",
+          "Fetus"
+        ],
+        [
+          "Placenta",
+          "part_of",
+          "Amniotic_sac"
+        ],
+        [
+          "Amniotic_fluid",
+          "part_of",
+          "Amniotic_sac"
+        ]
+      ],
+      "answer": "Amniotic fluid is part of the amniotic sac【4】.",
+      "links": [
+        [
+          "af",
+          "Amniotic_fluid"
+        ],
+        [
+          "placenta",
+          "Placenta"
+        ]
+      ],
+      "cited": [
+        [
+          4,
+          [
+            "Amniotic_fluid",
+            "part_of",
+            "Amniotic_sac"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, concept-aware (omega=0.25)",
+      "question": "Which system do ALS and PD both affect?",
+      "correct": false,
+      "abstained": true,
+      "context": [
+        [
+          "Parkinson_disease",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Parkinson_disease",
+          "has_symptom",
+          "Tremor"
+        ],
+        [
+          "Multiple_sclerosis",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Amyotrophic_lateral_sclerosis",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Levodopa",
+          "treats",
+          "Parkinson_disease"
+        ]
+      ],
+      "answer": "The provided facts do not contain information about the bodily system that is affected by both amyotrophic lateral sclerosis (ALS) and Parkinson disease (PD). Therefore, I cannot answer the question based on the given facts.",
+      "links": [
+        [
+          "als",
+          "Advanced_life_support"
+        ],
+        [
+          "pd",
+          "Parkinson_disease"
+        ]
+      ],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, concept-aware (omega=0.25)",
+      "question": "Which symptom of MS affects vision, unlike epilepsy?",
+      "correct": true,
+      "abstained": false,
+      "context": [
+        [
+          "Epilepsy",
+          "has_symptom",
+          "Seizure"
+        ],
+        [
+          "Multiple_sclerosis",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Parkinson_disease",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Amyotrophic_lateral_sclerosis",
+          "has_symptom",
+          "Muscle_weakness"
+        ],
+        [
+          "Multiple_sclerosis",
+          "has_symptom",
+          "Optic_neuritis"
+        ]
+      ],
+      "answer": "The vision‑related symptom of multiple sclerosis is **optic neuritis** [5]. This differs from epilepsy, whose listed symptom is seizure [1].",
+      "links": [
+        [
+          "ms",
+          "Multiple_sclerosis"
+        ],
+        [
+          "epilepsy",
+          "Epilepsy"
+        ]
+      ],
+      "cited": [
+        [
+          5,
+          [
+            "Multiple_sclerosis",
+            "has_symptom",
+            "Optic_neuritis"
+          ],
+          "DemoKG v1"
+        ],
+        [
+          1,
+          [
+            "Epilepsy",
+            "has_symptom",
+            "Seizure"
+          ],
+          "DemoKG v1"
+        ]
+      ],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, concept-aware (omega=0.25)",
+      "question": "What class of drug is MS, like codeine?",
+      "correct": false,
+      "abstained": true,
+      "context": [
+        [
+          "Morphine_sulfate",
+          "interacts_with",
+          "Diazepam"
+        ],
+        [
+          "Diazepam",
+          "has_side_effect",
+          "Respiratory_depression"
+        ],
+        [
+          "Codeine",
+          "has_side_effect",
+          "Constipation"
+        ],
+        [
+          "Morphine_sulfate",
+          "has_side_effect",
+          "Respiratory_depression"
+        ],
+        [
+          "Warfarin",
+          "interacts_with",
+          "Codeine"
+        ]
+      ],
+      "answer": "The provided facts do not contain information about the drug class of morphine sulfate (MS) or its relationship to codeine. Therefore, I cannot answer the question based on the given facts.",
+      "links": [
+        [
+          "ms",
+          "Morphine_sulfate"
+        ],
+        [
+          "codeine",
+          "Codeine"
+        ]
+      ],
+      "cited": [],
+      "invalid_citations": []
+    },
+    {
+      "setting": "KG retrieval, concept-aware (omega=0.25)",
+      "question": "What kind of disease is RA, as asthma is a respiratory one?",
+      "correct": false,
+      "abstained": true,
+      "context": [
+        [
+          "Asthma",
+          "has_symptom",
+          "Wheezing"
+        ],
+        [
+          "Asthma",
+          "is_a",
+          "Respiratory_disease"
+        ],
+        [
+          "Rheumatoid_arthritis",
+          "has_symptom",
+          "Fatigue"
+        ],
+        [
+          "Rheumatoid_arthritis",
+          "has_symptom",
+          "Joint_pain"
+        ],
+        [
+          "Multiple_sclerosis",
+          "has_symptom",
+          "Fatigue"
+        ]
+      ],
+      "answer": "The provided facts describe symptoms of rheumatoid arthritis (fatigue and joint pain) but do not specify the category or type of disease that rheumatoid arthritis belongs to. Therefore, based on the available information, I cannot determine what kind of disease rheumatoid arthritis is. \n\n(Insufficient facts)",
+      "links": [
+        [
+          "ra",
+          "Rheumatoid_arthritis"
+        ],
+        [
+          "asthma",
+          "Asthma"
+        ]
+      ],
+      "cited": [],
+      "invalid_citations": []
+    }
+  ]
+}

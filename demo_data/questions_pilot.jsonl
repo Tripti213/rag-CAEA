@@ -1,0 +1,10 @@
+{"question": "Which drugs treat MS and rheumatoid arthritis?", "gold_links": {"ms": "Multiple_sclerosis"}, "gold_triples": [["Interferon_beta", "treats", "Multiple_sclerosis"]]}
+{"question": "Is MS risky together with diazepam or codeine?", "gold_links": {"ms": "Morphine_sulfate"}, "gold_triples": [["Morphine_sulfate", "interacts_with", "Diazepam"]]}
+{"question": "Is RA or asthma more associated with joint pain?", "gold_links": {"ra": "Rheumatoid_arthritis"}, "gold_triples": [["Rheumatoid_arthritis", "has_symptom", "Joint_pain"]]}
+{"question": "Which chambers does RA connect to, like the left atrium?", "gold_links": {"ra": "Right_atrium"}, "gold_triples": [["Right_atrium", "connected_to", "Right_ventricle"]]}
+{"question": "Is tremor a symptom of PD or epilepsy?", "gold_links": {"pd": "Parkinson_disease"}, "gold_triples": [["Parkinson_disease", "has_symptom", "Tremor"]]}
+{"question": "Is PD used with hemodialysis for kidney failure?", "gold_links": {"pd": "Peritoneal_dialysis"}, "gold_triples": [["Peritoneal_dialysis", "used_for", "Kidney_failure"]]}
+{"question": "Does riluzole help ALS and muscle weakness?", "gold_links": {"als": "Amyotrophic_lateral_sclerosis"}, "gold_triples": [["Riluzole", "treats", "Amyotrophic_lateral_sclerosis"]]}
+{"question": "Is ALS used for cardiac arrest like defibrillation?", "gold_links": {"als": "Advanced_life_support"}, "gold_triples": [["Advanced_life_support", "used_for", "Cardiac_arrest"]]}
+{"question": "Do warfarin and apixaban treat AF?", "gold_links": {"af": "Atrial_fibrillation"}, "gold_triples": [["Warfarin", "treats", "Atrial_fibrillation"], ["Apixaban", "treats", "Atrial_fibrillation"]]}
+{"question": "Is AF surrounding the fetus, like the placenta?", "gold_links": {"af": "Amniotic_fluid"}, "gold_triples": [["Amniotic_fluid", "surrounds", "Fetus"]]}

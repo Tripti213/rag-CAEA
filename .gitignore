@@ -1,0 +1,20 @@
+# environments and caches
+.venv/
+venv/
+__pycache__/
+*.pyc
+.enc_cache/
+.DS_Store
+.vscode/
+
+# large data and generated data (rebuild with build_primekg.py / make_questions.py)
+kg.csv
+
+# generated results in the project root (move the ones you want to keep into results/)
+/results*.json
+/answers*.json
+/tuned*.json
+
+# secrets
+.env
+*.key
